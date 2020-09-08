@@ -3,7 +3,6 @@ extends Control
 var current_os = OS.get_name()
 var working_dir = "."
 var copy_config: Dictionary
-var date = ''
 
 func _ready():
 	Logger.set_default_logfile_path("/Users/i13az81/Develop/UNI/MirrorRobot/Logger/logfile.log")
@@ -103,8 +102,12 @@ func _on_MirrorButton_pressed():
 		)
 		$MirrorErrorDialog.popup_centered()
 		
-#	$MirrorButton.disabled = true TODO 
+	$MirrorButton.disabled = true 
 	$MirrorButton.text = "Mirroring..."
+	
+	for input in copy_config["input"]:
+		pass
+
 
 
 func _on_OpenFolderButton_pressed():
