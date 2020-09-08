@@ -129,3 +129,20 @@ func fill_config_file_selector() -> void:
 
 func _on_MirrorErrorDialog_popup_hide():
 	$MirrorErrorDialog/LineEdit.bbcode_text = "[color=grey][matrix]Error[/matrix]"
+
+
+func _on_EditSelectedFileButton_pressed():
+	var selector: OptionButton =$HBoxContainer/ConfigFileSelector
+	
+	if  selector.selected < 0:
+		Logger.debug("No file selected!")
+		return
+	
+	var path: String = selector.get_item_text(selector.selected)
+	path = working_dir + "/" + path  
+	var file : = File.new()
+	if !file.file_exists(path):
+		Logger.info(file.is_open())
+		Logger.info("Could not open file " + path)
+		return
+	OS.shell_open("file://" + path)

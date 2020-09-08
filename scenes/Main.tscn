@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/RichTextEffects/MatrixEffect.gd" type="Script" id=1]
 [ext_resource path="res://src/TitleBar.gd" type="Script" id=2]
@@ -7,8 +7,9 @@
 [ext_resource path="res://assets/folder-open.png" type="Texture" id=5]
 [ext_resource path="res://src/App.gd" type="Script" id=6]
 [ext_resource path="res://assets/fonts/main_font.tres" type="DynamicFont" id=7]
+[ext_resource path="res://assets/edit.png" type="Texture" id=8]
 
-[sub_resource type="Theme" id=1]
+[sub_resource type="Theme" id=5]
 Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
 Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
@@ -21,7 +22,7 @@ Button/styles/hover = null
 Button/styles/normal = null
 Button/styles/pressed = null
 
-[sub_resource type="RichTextEffect" id=2]
+[sub_resource type="RichTextEffect" id=6]
 resource_name = "RichTextMatrix"
 script = ExtResource( 1 )
 
@@ -34,7 +35,7 @@ font_data = ExtResource( 3 )
 [sub_resource type="Theme" id=4]
 default_font = SubResource( 3 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=7]
 size = 30
 use_mipmaps = true
 use_filter = true
@@ -43,7 +44,7 @@ font_data = ExtResource( 3 )
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = SubResource( 1 )
+theme = SubResource( 5 )
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_lock_": true
@@ -82,7 +83,7 @@ bbcode_enabled = true
 bbcode_text = "[color=grey][matrix]Error[/matrix]"
 text = "Error"
 selection_enabled = true
-custom_effects = [ SubResource( 2 ) ]
+custom_effects = [ SubResource( 6 ) ]
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -131,7 +132,7 @@ __meta__ = {
 }
 
 [node name="ConfigFileSelector" type="OptionButton" parent="HBoxContainer"]
-margin_right = 223.0
+margin_right = 189.0
 margin_bottom = 30.0
 size_flags_horizontal = 3
 text = "Config File"
@@ -141,11 +142,20 @@ __meta__ = {
 }
 
 [node name="OpenFolderButton" type="Button" parent="HBoxContainer"]
+margin_left = 193.0
+margin_right = 223.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+icon = ExtResource( 5 )
+flat = true
+expand_icon = true
+
+[node name="EditSelectedFileButton" type="Button" parent="HBoxContainer"]
 margin_left = 227.0
 margin_right = 257.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 30, 30 )
-icon = ExtResource( 5 )
+icon = ExtResource( 8 )
 flat = true
 expand_icon = true
 
@@ -272,7 +282,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="VBoxContainer"]
 margin_right = 184.0
 margin_bottom = 39.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
 text = "Godot Mirror"
 valign = 3
 __meta__ = {
@@ -291,6 +301,7 @@ __meta__ = {
 [connection signal="popup_hide" from="MirrorErrorDialog" to="." method="_on_MirrorErrorDialog_popup_hide"]
 [connection signal="meta_clicked" from="AboutDialog/Label2" to="." method="_on_Label2_meta_clicked"]
 [connection signal="pressed" from="HBoxContainer/OpenFolderButton" to="." method="_on_OpenFolderButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/EditSelectedFileButton" to="." method="_on_EditSelectedFileButton_pressed"]
 [connection signal="pressed" from="MirrorButton" to="." method="_on_MirrorButton_pressed"]
 [connection signal="pressed" from="AboutButton" to="." method="_on_AboutButton_pressed"]
 [connection signal="gui_input" from="TitleBar" to="TitleBar" method="_on_TitleBar_gui_input"]
