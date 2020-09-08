@@ -1,10 +1,8 @@
 # Godot Mirror
 
 A program to Mirror Files and Dictionaries on the Windows Plattform. Made with the [Godot Engine](https://godotengine.org) 3.1
-This program was created by [Sir.MoM]().
-Visit the [repository]() to file bug reports or contribute!
-
-
+This program was created by [Sir.MoM](https://github.com/SirMoM).
+Visit the [repository](https://github.com/SirMoM/Godot-Mirror) to file bug reports or contribute!
 
 ## Warning
 
