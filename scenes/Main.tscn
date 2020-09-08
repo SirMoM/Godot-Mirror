@@ -1,0 +1,298 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://src/RichTextEffects/MatrixEffect.gd" type="Script" id=1]
+[ext_resource path="res://src/TitleBar.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/Kufam-VariableFont_wght.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/icon.png" type="Texture" id=4]
+[ext_resource path="res://assets/folder-open.png" type="Texture" id=5]
+[ext_resource path="res://src/App.gd" type="Script" id=6]
+[ext_resource path="res://assets/fonts/main_font.tres" type="DynamicFont" id=7]
+
+[sub_resource type="Theme" id=1]
+Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = ExtResource( 7 )
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = null
+Button/styles/normal = null
+Button/styles/pressed = null
+
+[sub_resource type="RichTextEffect" id=2]
+resource_name = "RichTextMatrix"
+script = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+use_mipmaps = true
+use_filter = true
+extra_spacing_top = 2
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=4]
+default_font = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 30
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 1 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="FileDialog" type="FileDialog" parent="."]
+margin_right = 416.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 400, 140 )
+window_title = "Open a Directory"
+dialog_text = "Choose the directory of your config files!"
+mode = 2
+access = 2
+current_dir = "/Users/i13az81/Develop/UNI/MirrorRobot"
+current_path = "/Users/i13az81/Develop/UNI/MirrorRobot/"
+
+[node name="MirrorErrorDialog" type="AcceptDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -175.0
+margin_top = -91.0
+margin_right = 175.0
+margin_bottom = 91.0
+window_title = "Errors"
+resizable = true
+
+[node name="LineEdit" type="RichTextLabel" parent="MirrorErrorDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 342.0
+margin_bottom = 138.0
+focus_mode = 2
+bbcode_enabled = true
+bbcode_text = "[color=grey][matrix]Error[/matrix]"
+text = "Error"
+selection_enabled = true
+custom_effects = [ SubResource( 2 ) ]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AboutDialog" type="AcceptDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -175.0
+margin_top = -91.0
+margin_right = 175.0
+margin_bottom = 91.0
+window_title = "About"
+
+[node name="Label2" type="RichTextLabel" parent="AboutDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 342.0
+margin_bottom = 138.0
+theme = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "Coded by [url=https://www.patreon.com/coppolaemilio]Emilio Coppola[/url] and [url=https://github.com/coppolaemilio/godot-nightly/graphs/contributors]contributors[/url] 2019. Made with [url=https://godotengine.org]Godot Engine[/url] 3.1
+	Visit the [url=https://github.com/coppolaemilio/godot-nightly]repository[/url] to file bug reports or contribute!
+Builds from [url=https://hugo.pro/projects/godot-builds/]Hugo Lucurcio[/url]'s Unofficial Godot Engine builds"
+text = "Coded by Emilio Coppola and contributors 2019. Made with Godot Engine 3.1
+	Visit the repository to file bug reports or contribute!
+Builds from Hugo Lucurcio's Unofficial Godot Engine builds"
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 500.0
+margin_bottom = 300.0
+mouse_filter = 2
+color = Color( 0.0878906, 0.10467, 0.140625, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 23.0
+margin_top = 137.0
+margin_right = 280.0
+margin_bottom = 167.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConfigFileSelector" type="OptionButton" parent="HBoxContainer"]
+margin_right = 223.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+text = "Config File"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpenFolderButton" type="Button" parent="HBoxContainer"]
+margin_left = 227.0
+margin_right = 257.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+icon = ExtResource( 5 )
+flat = true
+expand_icon = true
+
+[node name="MirrorButton" type="Button" parent="."]
+anchor_left = -0.000879028
+anchor_top = -0.00163879
+anchor_right = -0.000879028
+anchor_bottom = -0.00163879
+margin_left = 20.0
+margin_top = 190.0
+margin_right = 280.0
+margin_bottom = 240.0
+text = "Mirror"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_left = 18.0
+margin_top = 260.0
+margin_right = 480.0
+margin_bottom = 284.0
+value = 56.08
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AboutButton" type="Button" parent="."]
+self_modulate = Color( 1, 1, 1, 0.415686 )
+margin_left = 380.0
+margin_top = 41.0
+margin_right = 438.0
+margin_bottom = 68.0
+text = "About"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Logo" type="Sprite" parent="."]
+position = Vector2( 58, 67 )
+scale = Vector2( 0.875, 0.875 )
+texture = ExtResource( 4 )
+
+[node name="Warning" type="RichTextLabel" parent="."]
+anchor_left = 0.6216
+anchor_top = 0.26
+anchor_right = 0.9416
+anchor_bottom = 0.85
+bbcode_enabled = true
+bbcode_text = "The stability of this tool is not guaranteed. Use them at your own risk.
+
+[center]! You may lose files ![/center]
+
+This tool workes only under windows since it uses the robocopy command."
+text = "The stability of this tool is not guaranteed. Use them at your own risk.
+
+! You may lose files !
+
+This tool workes only under windows since it uses the robocopy command."
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="TitleBar" type="Control" parent="."]
+anchor_right = 1.0
+margin_bottom = 33.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="TitleBar"]
+anchor_left = -0.000956238
+anchor_right = 0.999044
+anchor_bottom = 1.0
+mouse_filter = 1
+color = Color( 0.138062, 0.166409, 0.226563, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="CloseButton" type="Button" parent="TitleBar"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -23.0
+margin_top = 3.0
+margin_bottom = 30.0
+text = "X"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MinimizeButton" type="Button" parent="TitleBar"]
+anchor_left = 0.95
+anchor_top = 0.091
+anchor_right = 0.95
+anchor_bottom = 0.091
+margin_left = -25.0
+margin_top = -0.00300026
+margin_right = -3.05176e-05
+margin_bottom = 26.997
+text = "_"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.21
+anchor_top = 0.0473333
+anchor_right = 0.578
+anchor_bottom = 0.237333
+margin_left = -2.28882e-05
+margin_top = 26.8
+margin_right = -3.05176e-05
+margin_bottom = 26.8
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+margin_right = 184.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 5 )
+text = "Godot Mirror"
+valign = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Version" type="Label" parent="VBoxContainer"]
+margin_top = 43.0
+margin_right = 184.0
+margin_bottom = 57.0
+text = " v0.0.1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_FileDialog_dir_selected"]
+[connection signal="popup_hide" from="MirrorErrorDialog" to="." method="_on_MirrorErrorDialog_popup_hide"]
+[connection signal="meta_clicked" from="AboutDialog/Label2" to="." method="_on_Label2_meta_clicked"]
+[connection signal="pressed" from="HBoxContainer/OpenFolderButton" to="." method="_on_OpenFolderButton_pressed"]
+[connection signal="pressed" from="MirrorButton" to="." method="_on_MirrorButton_pressed"]
+[connection signal="pressed" from="AboutButton" to="." method="_on_AboutButton_pressed"]
+[connection signal="gui_input" from="TitleBar" to="TitleBar" method="_on_TitleBar_gui_input"]
+[connection signal="pressed" from="TitleBar/CloseButton" to="TitleBar" method="_on_CloseButton_pressed"]
+[connection signal="pressed" from="TitleBar/MinimizeButton" to="TitleBar" method="_on_MinimizeButton_pressed"]
