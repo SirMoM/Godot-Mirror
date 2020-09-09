@@ -28,7 +28,9 @@ config/icon="res://assets/icon.png"
 
 [autoload]
 
-Logger="*res://Logger/logger.gd"
+IconLoader="*res://addons/file-editor/scripts/IconLoader.gd"
+LastOpenedFiles="*res://addons/file-editor/scripts/LastOpenedFiles.gd"
+Logger="*res://godot-logger/Logger.gd"
 
 [display]
 
@@ -37,10 +39,10 @@ window/size/height=300
 window/size/resizable=false
 window/size/always_on_top=true
 
+[editor_plugins]
+
+enabled=PoolStringArray( "file-editor" )
+
 [game]
 
 tablet_driver=false
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"

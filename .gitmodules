@@ -1,0 +1,3 @@
+[submodule "godot-logger"]
+	path = godot-logger
+	url = https://github.com/SirMoM/godot-logger.git
