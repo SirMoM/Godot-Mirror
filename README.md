@@ -15,4 +15,4 @@ This program was created based on the Programm of [Emilio Coppola](https://www.p
 This Programm uses a modified version of the [logger.gd](https://github.com/KOBUGE-Games/godot-logger/blob/master/logger.gd) script from
 [KOBUGE Games](https://github.com/KOBUGE-Games) visit the [repository](https://github.com/KOBUGE-Games/godot-logger)
 
-Icons erstellt von <a href="https://www.flaticon.com/de/autoren/kiranshastry" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/de/" title="Flaticon"> www.flaticon.com</a>
+Edit Icon created by [Kiranshastry](https://www.flaticon.com/de/autoren/kiranshastry "Kiranshastry") from [www.flaticon.com](https://www.flaticon.com/de/ "Flaticon")

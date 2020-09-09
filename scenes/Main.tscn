@@ -89,29 +89,62 @@ __meta__ = {
 }
 
 [node name="AboutDialog" type="AcceptDialog" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -175.0
-margin_top = -91.0
-margin_right = 175.0
-margin_bottom = 91.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 50.0
+margin_right = -20.0
+margin_bottom = -20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 window_title = "About"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label2" type="RichTextLabel" parent="AboutDialog"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 342.0
-margin_bottom = 138.0
+margin_right = 452.0
+margin_bottom = 186.0
 theme = SubResource( 4 )
 bbcode_enabled = true
-bbcode_text = "Coded by [url=https://www.patreon.com/coppolaemilio]Emilio Coppola[/url] and [url=https://github.com/coppolaemilio/godot-nightly/graphs/contributors]contributors[/url] 2019. Made with [url=https://godotengine.org]Godot Engine[/url] 3.1
-	Visit the [url=https://github.com/coppolaemilio/godot-nightly]repository[/url] to file bug reports or contribute!
-Builds from [url=https://hugo.pro/projects/godot-builds/]Hugo Lucurcio[/url]'s Unofficial Godot Engine builds"
-text = "Coded by Emilio Coppola and contributors 2019. Made with Godot Engine 3.1
-	Visit the repository to file bug reports or contribute!
-Builds from Hugo Lucurcio's Unofficial Godot Engine builds"
+bbcode_text = "[b]Godot Mirror[/b]
+
+A program to Mirror Files and Dictionaries on the Windows platform. Made with the [url=https://godotengine.org]Godot Engine[/url] 3.1
+This program was created by [url=https://github.com/SirMoM]Sir.MoM[/url].
+Visit the [url=https://github.com/SirMoM/Godot-Mirror]repository[/url] to file bug reports or contribute!
+
+[b] Warning [/b]
+
+The stability of this Programm is not guaranteed. Use them at your own risk.
+
+[b] Notice [/b]
+
+This program was created based on the Programm of [url=https://www.patreon.com/coppolaemilio]Emilio Coppola[/url] and [url=https://github.com/coppolaemilio/godot-nightly/graphs/contributors]contributors[/url] for one [url=https://www.youtube.com/watch?v=WaUaNiq-5DY]of his videos[/url]. Visit his [url=https://github.com/coppolaemilio/godot-nightly]repository[/url]!
+
+This Programm uses a modified version of the [url=https://github.com/KOBUGE-Games/godot-logger/blob/master/logger.gd]logger.gd[/url] script from
+[url=https://github.com/KOBUGE-Games]KOBUGE Games[/url] visit the [url=https://github.com/KOBUGE-Games/godot-logger]repository[/url]
+
+Edit Icon created by [url=https://www.flaticon.com/de/autoren/kiranshastry]Kiranshastry[/url]"
+text = "Godot Mirror
+
+A program to Mirror Files and Dictionaries on the Windows platform. Made with the Godot Engine 3.1
+This program was created by Sir.MoM.
+Visit the repository to file bug reports or contribute!
+
+ Warning 
+
+The stability of this Programm is not guaranteed. Use them at your own risk.
+
+ Notice 
+
+This program was created based on the Programm of Emilio Coppola and contributors for one of his videos. Visit his repository!
+
+This Programm uses a modified version of the logger.gd script from
+KOBUGE Games visit the repository
+
+Edit Icon created by Kiranshastry"
 
 [node name="Background" type="ColorRect" parent="."]
 margin_right = 500.0
