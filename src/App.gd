@@ -1,11 +1,11 @@
 extends Control
 
 var current_os = OS.get_name()
-var working_dir = "."
+var working_dir = "/0 MiscDev/GODOT/Godot-Mirror/.gdignore/example_data"
 var copy_config: Dictionary
 
 func _ready():
-	Logger.set_default_logfile_path("/Users/i13az81/Develop/UNI/MirrorRobot/Logger/logfile.log")
+	#Logger.set_default_logfile_path("/Users/i13az81/Develop/UNI/MirrorRobot/Logger/logfile.log")
 	Logger.default_output_level = Logger.DEBUG
 	
 	var out_strats = [Logger.STRATEGY_PRINT, Logger.STRATEGY_PRINT, Logger.STRATEGY_PRINT_AND_FILE, Logger.STRATEGY_PRINT_AND_FILE, Logger.STRATEGY_PRINT_AND_FILE]
@@ -58,11 +58,26 @@ func _on_Label2_meta_clicked(meta):
 
 
 func _on_MirrorButton_pressed():
+	var file: File = _open_file()
+	if _load_file_contend(file) != OK:
+		return
+		
+	$MirrorButton.disabled = true 
+	$MirrorButton.text = "Mirroring..."
+	
+	var console=[]
+	for input in copy_config["input"]:
+		Directory.new().make_dir_recursive(copy_config["output"])
+		OS.execute("robocopy", [input, copy_config["output"], "/MIR"], true,console)
+		$ProgressBar.value += 100 / copy_config["input"].size()
+	Logger.debug(console)
+
+func _open_file():
 	var selector: OptionButton =$HBoxContainer/ConfigFileSelector
 	
 	if  selector.selected < 0:
 		Logger.debug("No file selected!")
-		return
+		return ERR_CANT_ACQUIRE_RESOURCE
 	
 	var path: String = selector.get_item_text(selector.selected)
 	path = working_dir + "/" + path  
@@ -70,12 +85,15 @@ func _on_MirrorButton_pressed():
 	if !file.file_exists(path):
 		Logger.info(file.is_open())
 		Logger.info("Could not open file " + path)
-		return
+		return ERR_DOES_NOT_EXIST
 		
 	if file.open(path, File.READ_WRITE) != OK:
 		Logger.warn("Could not open file " + path)
-		return 
-		
+		return ERR_FILE_CANT_OPEN
+	return file
+	
+
+func _load_file_contend(file: File):
 	var file_contend = file.get_as_text()
 	var invalid = validate_json(file_contend)
 	if not invalid:
@@ -84,7 +102,7 @@ func _on_MirrorButton_pressed():
 			Logger.warn("Invalide Config File")
 			Logger.error("Did not set config")
 			$MirrorErrorDialog.popup_centered()
-			return
+			return ERR_INVALID_DATA
 		else:
 			copy_config = config
 			Logger.info("Set config: " + str(copy_config))
@@ -101,14 +119,8 @@ func _on_MirrorButton_pressed():
 			+ invalid
 		)
 		$MirrorErrorDialog.popup_centered()
-		return
-		
-	$MirrorButton.disabled = true 
-	$MirrorButton.text = "Mirroring..."
-	
-	for input in copy_config["input"]:
-		pass
-
+		return ERR_FILE_CORRUPT
+	return OK
 
 
 func _on_OpenFolderButton_pressed():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/RichTextEffects/MatrixEffect.gd" type="Script" id=1]
 [ext_resource path="res://src/TitleBar.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/App.gd" type="Script" id=6]
 [ext_resource path="res://assets/fonts/main_font.tres" type="DynamicFont" id=7]
 [ext_resource path="res://assets/edit.png" type="Texture" id=8]
+[ext_resource path="res://assets/fonts/Kufam-Italic-VariableFont_wght.ttf" type="DynamicFontData" id=9]
 
 [sub_resource type="Theme" id=1]
 Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
@@ -39,7 +40,7 @@ default_font = SubResource( 3 )
 size = 30
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 3 )
+font_data = ExtResource( 9 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -58,8 +59,8 @@ window_title = "Open a Directory"
 dialog_text = "Choose the directory of your config files!"
 mode = 2
 access = 2
-current_dir = "/Users/i13az81/Develop/UNI/MirrorRobot"
-current_path = "/Users/i13az81/Develop/UNI/MirrorRobot/"
+current_dir = "/0 MiscDev/GODOT/Godot-Mirror"
+current_path = "/0 MiscDev/GODOT/Godot-Mirror/"
 
 [node name="MirrorErrorDialog" type="AcceptDialog" parent="."]
 anchor_left = 0.5
