@@ -9,9 +9,9 @@ func _ready():
 	Logger.default_output_level = Logger.DEBUG
 	
 	var out_strats = [Logger.STRATEGY_PRINT, Logger.STRATEGY_PRINT, Logger.STRATEGY_PRINT_AND_FILE, Logger.STRATEGY_PRINT_AND_FILE, Logger.STRATEGY_PRINT_AND_FILE]
-	Logger.add_module("App", Logger.VERBOSE, out_strats)
+	Logger.add_module("App", Logger.TRACE, out_strats)
 	Logger.info(Logger.default_logfile_path, "App")
-	Logger.default_module = "App"
+	Logger.default_module_name = "App"
 #	match current_os:
 #		"Windows":
 #			$OSSelector.select(0)
@@ -101,6 +101,7 @@ func _on_MirrorButton_pressed():
 			+ invalid
 		)
 		$MirrorErrorDialog.popup_centered()
+		return
 		
 	$MirrorButton.disabled = true 
 	$MirrorButton.text = "Mirroring..."
