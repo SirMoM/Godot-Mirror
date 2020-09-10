@@ -286,6 +286,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HelpButton" type="Button" parent="TitleBar"]
+anchor_bottom = 1.0
+margin_left = 5.0
+rect_min_size = Vector2( 30, 33 )
+text = "?"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="MinimizeButton" type="Button" parent="TitleBar"]
 anchor_left = 0.95
 anchor_top = 0.091
@@ -300,6 +310,62 @@ flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="HelpDialog" type="AcceptDialog" parent="TitleBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 50.0
+margin_right = -20.0
+margin_bottom = 83.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+window_title = "About"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="RichTextLabel" parent="TitleBar/HelpDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 452.0
+margin_bottom = 22.0
+theme = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[b]How to use[/b]
+
+1. Create a config file
+   1. It has to be a JOSN-File like _config.json_
+   2. The JSON inside needs to have 2 attributes:
+      1. Input - Array of Strings: Input paths
+      2. Output - String: Output path
+2. Open the directory containing the file with the folder icon.
+   1. You can edit the file with the pen icon
+3. Select the correct config file in the drop down button nex to the folder icon
+4. Press the Mirror button
+
+[b]The UI[/b]
+[img=420x250]./assets/Screenshot.png[/img]
+
+Have fun!
+"
+text = "How to use
+
+1. Create a config file
+   1. It has to be a JOSN-File like _config.json_
+   2. The JSON inside needs to have 2 attributes:
+      1. Input - Array of Strings: Input paths
+      2. Output - String: Output path
+2. Open the directory containing the file with the folder icon.
+   1. You can edit the file with the pen icon
+3. Select the correct config file in the drop down button nex to the folder icon
+4. Press the Mirror button
+
+The UI
+
+
+Have fun!
+"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.21
@@ -341,4 +407,5 @@ __meta__ = {
 [connection signal="pressed" from="AboutButton" to="." method="_on_AboutButton_pressed"]
 [connection signal="gui_input" from="TitleBar" to="TitleBar" method="_on_TitleBar_gui_input"]
 [connection signal="pressed" from="TitleBar/CloseButton" to="TitleBar" method="_on_CloseButton_pressed"]
+[connection signal="pressed" from="TitleBar/HelpButton" to="TitleBar" method="_on_HelpButton_pressed"]
 [connection signal="pressed" from="TitleBar/MinimizeButton" to="TitleBar" method="_on_MinimizeButton_pressed"]

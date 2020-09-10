@@ -24,3 +24,7 @@ func _on_CloseButton_pressed():
 
 func _on_MinimizeButton_pressed():
 	OS.set_window_minimized(true)
+
+
+func _on_HelpButton_pressed():
+	$HelpDialog.popup_centered()
