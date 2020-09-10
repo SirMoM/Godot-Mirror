@@ -4,21 +4,26 @@ var current_os = OS.get_name()
 var working_dir = "/0 MiscDev/GODOT/Godot-Mirror/.gdignore/example_data"
 var copy_config: Dictionary
 
+var windows: bool = false
+var mac: bool = false
+
 func _ready():
 	#Logger.set_default_logfile_path("/Users/i13az81/Develop/UNI/MirrorRobot/Logger/logfile.log")
 	Logger.default_output_level = Logger.DEBUG
 	
 	var out_strats = [Logger.STRATEGY_PRINT, Logger.STRATEGY_PRINT, Logger.STRATEGY_PRINT_AND_FILE, Logger.STRATEGY_PRINT_AND_FILE, Logger.STRATEGY_PRINT_AND_FILE]
 	Logger.add_module("App", Logger.TRACE, out_strats)
+	Logger.get_module("App").time_template = "dd.mm.yyyy hh:MM:ss"
 	Logger.info(Logger.default_logfile_path, "App")
 	Logger.default_module_name = "App"
-#	match current_os:
-#		"Windows":
-#			$OSSelector.select(0)
-#			file_ext = ".zip"
-#		_:
-#			printerr("This OS is not supported!")
-#			queue_free()
+	match current_os:
+		"Windows":
+			windows = true
+		"OSX":
+			mac = true
+		_:
+			Logger.error("This OS ("+ current_os +") is not supported!" )
+			queue_free()
 
 	# Add the date and extension to the file name to compare to previous versions
 	$ProgressBar.value = 0
@@ -58,8 +63,8 @@ func _on_Label2_meta_clicked(meta):
 
 
 func _on_MirrorButton_pressed():
-	var file: File = _open_file()
-	if _load_file_contend(file) != OK:
+	var file = _open_file()
+	if not file is File or _load_file_contend(file) != OK:
 		return
 		
 	$MirrorButton.disabled = true 
@@ -68,15 +73,22 @@ func _on_MirrorButton_pressed():
 	var console=[]
 	for input in copy_config["input"]:
 		Directory.new().make_dir_recursive(copy_config["output"])
-		OS.execute("robocopy", [input, copy_config["output"], "/MIR"], true,console)
+		
+		if windows:
+			OS.execute("robocopy", [input, copy_config["output"], "/MIR"], true,console)
+		elif mac:
+			OS.execute("rsync", [input + " " + copy_config["output"] + "-av", "| cat"], true,console)
+
 		$ProgressBar.value += 100 / copy_config["input"].size()
 	Logger.debug(console)
+	$MirrorButton.disabled = false 
+	$MirrorButton.text = "Mirror"
 
 func _open_file():
 	var selector: OptionButton =$HBoxContainer/ConfigFileSelector
 	
 	if  selector.selected < 0:
-		Logger.debug("No file selected!")
+		Logger.debug("No file selected!", "App",ERR_CANT_ACQUIRE_RESOURCE)
 		return ERR_CANT_ACQUIRE_RESOURCE
 	
 	var path: String = selector.get_item_text(selector.selected)
