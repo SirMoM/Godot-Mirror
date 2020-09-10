@@ -50,6 +50,7 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_lock_": true
 }
+working_dir = "/Users/i13az81/Develop/UNI/MirrorRobot/.gdignore/example_data"
 
 [node name="FileDialog" type="FileDialog" parent="."]
 margin_right = 416.0
@@ -59,8 +60,8 @@ window_title = "Open a Directory"
 dialog_text = "Choose the directory of your config files!"
 mode = 2
 access = 2
-current_dir = "/0 MiscDev/GODOT/Godot-Mirror"
-current_path = "/0 MiscDev/GODOT/Godot-Mirror/"
+current_dir = "/Users/i13az81/Develop/UNI/MirrorRobot"
+current_path = "/Users/i13az81/Develop/UNI/MirrorRobot/"
 
 [node name="MirrorErrorDialog" type="AcceptDialog" parent="."]
 anchor_left = 0.5

@@ -1,7 +1,7 @@
 extends Control
 
 var current_os = OS.get_name()
-var working_dir = "/0 MiscDev/GODOT/Godot-Mirror/.gdignore/example_data"
+export var working_dir: String = "."
 var copy_config: Dictionary
 
 var windows: bool = false
@@ -13,7 +13,6 @@ func _ready():
 	
 	var out_strats = [Logger.STRATEGY_PRINT, Logger.STRATEGY_PRINT, Logger.STRATEGY_PRINT_AND_FILE, Logger.STRATEGY_PRINT_AND_FILE, Logger.STRATEGY_PRINT_AND_FILE]
 	Logger.add_module("App", Logger.TRACE, out_strats)
-	Logger.get_module("App").time_template = "dd.mm.yyyy hh:MM:ss"
 	Logger.info(Logger.default_logfile_path, "App")
 	Logger.default_module_name = "App"
 	match current_os:
