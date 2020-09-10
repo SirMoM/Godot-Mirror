@@ -60,8 +60,8 @@ window_title = "Open a Directory"
 dialog_text = "Choose the directory of your config files!"
 mode = 2
 access = 2
-current_dir = "/Users/i13az81/Develop/UNI/MirrorRobot"
-current_path = "/Users/i13az81/Develop/UNI/MirrorRobot/"
+current_dir = "/0 MiscDev/GODOT/Godot-Mirror"
+current_path = "/0 MiscDev/GODOT/Godot-Mirror/"
 
 [node name="MirrorErrorDialog" type="AcceptDialog" parent="."]
 anchor_left = 0.5
@@ -331,43 +331,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_left = 23.0
-margin_top = 137.0
-margin_right = 280.0
-margin_bottom = 167.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ConfigFileSelector" type="OptionButton" parent="HBoxContainer"]
-margin_right = 189.0
-margin_bottom = 30.0
-size_flags_horizontal = 3
-text = "Config File"
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="OpenFolderButton" type="Button" parent="HBoxContainer"]
-margin_left = 193.0
-margin_right = 223.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
-icon = ExtResource( 5 )
-flat = true
-expand_icon = true
-
-[node name="EditSelectedFileButton" type="Button" parent="HBoxContainer"]
-margin_left = 227.0
-margin_right = 257.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
-icon = ExtResource( 8 )
-flat = true
-expand_icon = true
-
 [node name="Warning" type="RichTextLabel" parent="."]
 anchor_left = 0.6216
 anchor_top = 0.26
@@ -378,36 +341,78 @@ bbcode_text = "The stability of this tool is not guaranteed. Use them at your ow
 
 [center]! You may lose files ![/center]
 
-This tool workes only under windows since it uses the robocopy command."
+This tool workes only under windows and mac since it uses plattform specific commands."
 text = "The stability of this tool is not guaranteed. Use them at your own risk.
 
 ! You may lose files !
 
-This tool workes only under windows since it uses the robocopy command."
+This tool workes only under windows and mac since it uses plattform specific commands."
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 20.0
+margin_top = 150.0
+margin_right = 285.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 260, 30 )
+custom_constants/separation = 0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ConfigFileSelector" type="OptionButton" parent="HBoxContainer"]
+margin_right = 205.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+size_flags_horizontal = 3
+text = "No json files!"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpenFolderButton" type="Button" parent="HBoxContainer"]
+margin_left = 205.0
+margin_right = 235.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+icon = ExtResource( 5 )
+flat = true
+expand_icon = true
+
+[node name="EditSelectedFileButton" type="Button" parent="HBoxContainer"]
+margin_left = 235.0
+margin_right = 265.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+icon = ExtResource( 8 )
+flat = true
+expand_icon = true
 
 [node name="MirrorButton" type="Button" parent="."]
 anchor_left = -0.000879028
 anchor_top = -0.00163879
 anchor_right = -0.000879028
 anchor_bottom = -0.00163879
-margin_left = 20.0
-margin_top = 190.0
-margin_right = 280.0
-margin_bottom = 240.0
+margin_left = 20.4395
+margin_top = 190.492
+margin_right = 280.44
+margin_bottom = 240.492
 text = "Mirror"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-margin_left = 18.0
+margin_left = 20.0
 margin_top = 260.0
-margin_right = 480.0
+margin_right = 482.0
 margin_bottom = 284.0
-value = 56.08
 __meta__ = {
 "_edit_use_anchors_": false
 }

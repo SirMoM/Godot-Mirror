@@ -37,6 +37,7 @@ Logger="*res://godot-logger/Logger.gd"
 window/size/width=500
 window/size/height=300
 window/size/resizable=false
+window/size/borderless=true
 window/size/always_on_top=true
 
 [editor_plugins]

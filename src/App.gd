@@ -188,7 +188,7 @@ func _fill_config_file_selector() -> void:
 		if path.ends_with(".json"):
 			selector.add_item(path)
 	if selector.get_item_count() == 0:
-		selector.text = "Could not find any json files!"
+		selector.text = "No json files!"
 
 
 ## Opens the currently selected file in the system editor
