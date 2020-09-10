@@ -87,6 +87,7 @@ text = "Error"
 selection_enabled = true
 custom_effects = [ SubResource( 2 ) ]
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -157,6 +158,179 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="TitleBar" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.11
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="TitleBar"]
+anchor_left = -0.000956238
+anchor_right = 0.999044
+anchor_bottom = 1.0
+mouse_filter = 1
+color = Color( 0.138062, 0.166409, 0.226563, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="CloseButton" type="Button" parent="TitleBar"]
+anchor_left = 0.934
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -3.05176e-05
+rect_min_size = Vector2( 33, 33 )
+text = "X"
+flat = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="HelpButton" type="Button" parent="TitleBar"]
+anchor_left = 0.01
+anchor_right = 0.07
+anchor_bottom = 1.0
+margin_right = -35.0
+rect_min_size = Vector2( 30, 33 )
+text = "?"
+flat = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="MinimizeButton" type="Button" parent="TitleBar"]
+anchor_left = 0.868
+anchor_right = 0.934
+anchor_bottom = 1.0
+rect_min_size = Vector2( 33, 33 )
+text = "_"
+flat = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="HelpDialog" type="AcceptDialog" parent="TitleBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 50.0
+margin_right = -20.0
+margin_bottom = 83.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+window_title = "About"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="RichTextLabel" parent="TitleBar/HelpDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 452.0
+margin_bottom = 22.0
+theme = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[b]How to use[/b]
+
+1. Create a config file
+	1. It has to be a JOSN-File like _config.json_
+	2. The JSON inside needs to have 2 attributes:
+		1. Input - Array of Strings:  Input paths
+		2. Output - String: Output path
+2. Open the directory containing the file with the folder icon.
+	1. You can edit the file with the pen icon
+3. Select the correct config file in the drop down button nex to the folder icon
+4. Press the Mirror button
+
+[b]Example config file[/b]
+[code]{
+		\"input\": [\"path_to_dir_1\", \"path_to_dir_2\"],
+		\"output\": \"path_to_backup_dir\"
+}[/code]
+
+
+[b]The UI[/b]
+[img=420x250]./assets/Screenshot.png[/img]
+
+[center][rainbow freq=0.88 sat=1 val=1][b]Have fun![/b][/rainbow][/center]
+"
+text = "How to use
+
+1. Create a config file
+	1. It has to be a JOSN-File like _config.json_
+	2. The JSON inside needs to have 2 attributes:
+		1. Input - Array of Strings:  Input paths
+		2. Output - String: Output path
+2. Open the directory containing the file with the folder icon.
+	1. You can edit the file with the pen icon
+3. Select the correct config file in the drop down button nex to the folder icon
+4. Press the Mirror button
+
+Example config file
+{
+		\"input\": [\"path_to_dir_1\", \"path_to_dir_2\"],
+		\"output\": \"path_to_backup_dir\"
+}
+
+
+The UI
+
+
+Have fun!
+"
+
+[node name="Logo" type="Sprite" parent="."]
+position = Vector2( 58, 67 )
+scale = Vector2( 0.875, 0.875 )
+texture = ExtResource( 4 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.21
+anchor_top = 0.136667
+anchor_right = 0.59
+anchor_bottom = 0.326667
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+margin_right = 190.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 5 )
+text = "Godot-Mirror"
+valign = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Version" type="Label" parent="VBoxContainer"]
+margin_top = 43.0
+margin_right = 190.0
+margin_bottom = 57.0
+text = " v0.0.1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AboutButton" type="Button" parent="."]
+self_modulate = Color( 1, 1, 1, 0.415686 )
+margin_left = 380.0
+margin_top = 41.0
+margin_right = 439.0
+margin_bottom = 69.0
+text = "About"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 23.0
 margin_top = 137.0
@@ -194,6 +368,26 @@ icon = ExtResource( 8 )
 flat = true
 expand_icon = true
 
+[node name="Warning" type="RichTextLabel" parent="."]
+anchor_left = 0.6216
+anchor_top = 0.26
+anchor_right = 0.9416
+anchor_bottom = 0.85
+bbcode_enabled = true
+bbcode_text = "The stability of this tool is not guaranteed. Use them at your own risk.
+
+[center]! You may lose files ![/center]
+
+This tool workes only under windows since it uses the robocopy command."
+text = "The stability of this tool is not guaranteed. Use them at your own risk.
+
+! You may lose files !
+
+This tool workes only under windows since it uses the robocopy command."
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
 [node name="MirrorButton" type="Button" parent="."]
 anchor_left = -0.000879028
 anchor_top = -0.00163879
@@ -217,195 +411,14 @@ value = 56.08
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="AboutButton" type="Button" parent="."]
-self_modulate = Color( 1, 1, 1, 0.415686 )
-margin_left = 380.0
-margin_top = 41.0
-margin_right = 438.0
-margin_bottom = 68.0
-text = "About"
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Logo" type="Sprite" parent="."]
-position = Vector2( 58, 67 )
-scale = Vector2( 0.875, 0.875 )
-texture = ExtResource( 4 )
-
-[node name="Warning" type="RichTextLabel" parent="."]
-anchor_left = 0.6216
-anchor_top = 0.26
-anchor_right = 0.9416
-anchor_bottom = 0.85
-bbcode_enabled = true
-bbcode_text = "The stability of this tool is not guaranteed. Use them at your own risk.
-
-[center]! You may lose files ![/center]
-
-This tool workes only under windows since it uses the robocopy command."
-text = "The stability of this tool is not guaranteed. Use them at your own risk.
-
-! You may lose files !
-
-This tool workes only under windows since it uses the robocopy command."
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="TitleBar" type="Control" parent="."]
-anchor_right = 1.0
-margin_bottom = 33.0
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect" type="ColorRect" parent="TitleBar"]
-anchor_left = -0.000956238
-anchor_right = 0.999044
-anchor_bottom = 1.0
-mouse_filter = 1
-color = Color( 0.138062, 0.166409, 0.226563, 1 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="CloseButton" type="Button" parent="TitleBar"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -23.0
-margin_top = 3.0
-margin_bottom = 30.0
-text = "X"
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HelpButton" type="Button" parent="TitleBar"]
-anchor_bottom = 1.0
-margin_left = 5.0
-rect_min_size = Vector2( 30, 33 )
-text = "?"
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MinimizeButton" type="Button" parent="TitleBar"]
-anchor_left = 0.95
-anchor_top = 0.091
-anchor_right = 0.95
-anchor_bottom = 0.091
-margin_left = -25.0
-margin_top = -0.00300026
-margin_right = -3.05176e-05
-margin_bottom = 26.997
-text = "_"
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HelpDialog" type="AcceptDialog" parent="TitleBar"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 50.0
-margin_right = -20.0
-margin_bottom = 83.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-window_title = "About"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label2" type="RichTextLabel" parent="TitleBar/HelpDialog"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 452.0
-margin_bottom = 22.0
-theme = SubResource( 4 )
-bbcode_enabled = true
-bbcode_text = "[b]How to use[/b]
-
-1. Create a config file
-   1. It has to be a JOSN-File like _config.json_
-   2. The JSON inside needs to have 2 attributes:
-      1. Input - Array of Strings: Input paths
-      2. Output - String: Output path
-2. Open the directory containing the file with the folder icon.
-   1. You can edit the file with the pen icon
-3. Select the correct config file in the drop down button nex to the folder icon
-4. Press the Mirror button
-
-[b]The UI[/b]
-[img=420x250]./assets/Screenshot.png[/img]
-
-Have fun!
-"
-text = "How to use
-
-1. Create a config file
-   1. It has to be a JOSN-File like _config.json_
-   2. The JSON inside needs to have 2 attributes:
-      1. Input - Array of Strings: Input paths
-      2. Output - String: Output path
-2. Open the directory containing the file with the folder icon.
-   1. You can edit the file with the pen icon
-3. Select the correct config file in the drop down button nex to the folder icon
-4. Press the Mirror button
-
-The UI
-
-
-Have fun!
-"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_left = 0.21
-anchor_top = 0.0473333
-anchor_right = 0.578
-anchor_bottom = 0.237333
-margin_left = -2.28882e-05
-margin_top = 26.8
-margin_right = -3.05176e-05
-margin_bottom = 26.8
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Title" type="Label" parent="VBoxContainer"]
-margin_right = 190.0
-margin_bottom = 39.0
-custom_fonts/font = SubResource( 5 )
-text = "Godot-Mirror"
-valign = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Version" type="Label" parent="VBoxContainer"]
-margin_top = 43.0
-margin_right = 190.0
-margin_bottom = 57.0
-text = " v0.0.1"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 [connection signal="dir_selected" from="FileDialog" to="." method="_on_FileDialog_dir_selected"]
-[connection signal="popup_hide" from="MirrorErrorDialog" to="." method="_on_MirrorErrorDialog_popup_hide"]
+[connection signal="meta_clicked" from="MirrorErrorDialog/LineEdit" to="." method="_on_LineEdit_meta_clicked"]
 [connection signal="meta_clicked" from="AboutDialog/Label2" to="." method="_on_Label2_meta_clicked"]
-[connection signal="pressed" from="HBoxContainer/OpenFolderButton" to="." method="_on_OpenFolderButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/EditSelectedFileButton" to="." method="_on_EditSelectedFileButton_pressed"]
-[connection signal="pressed" from="MirrorButton" to="." method="_on_MirrorButton_pressed"]
-[connection signal="pressed" from="AboutButton" to="." method="_on_AboutButton_pressed"]
 [connection signal="gui_input" from="TitleBar" to="TitleBar" method="_on_TitleBar_gui_input"]
 [connection signal="pressed" from="TitleBar/CloseButton" to="TitleBar" method="_on_CloseButton_pressed"]
 [connection signal="pressed" from="TitleBar/HelpButton" to="TitleBar" method="_on_HelpButton_pressed"]
 [connection signal="pressed" from="TitleBar/MinimizeButton" to="TitleBar" method="_on_MinimizeButton_pressed"]
+[connection signal="pressed" from="AboutButton" to="." method="_on_AboutButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/OpenFolderButton" to="." method="_on_OpenFolderButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/EditSelectedFileButton" to="." method="_on_EditSelectedFileButton_pressed"]
+[connection signal="pressed" from="MirrorButton" to="." method="_on_MirrorButton_pressed"]

@@ -2,7 +2,7 @@
 addons/file-editor
 
 # Logfiles 
-*.log
+*/**/*.log
 
 # MAC ignores
 .DS_Store

@@ -1,4 +1,4 @@
-**How to use**
+# How to use
 
 1. Create a config file
    1. It has to be a JOSN-File like _config.json_
@@ -10,5 +10,13 @@
 3. Select the correct config file in the drop down button nex to the folder icon
 4. Press the Mirror button
 
-**The UI**
+**Example config file**
+{
+  "input": ["path_to_dir_1", "path_to_dir_2"],
+  "output": "path_to_backup_dir"
+}
+
+
+# The UI
 ![Screenshot](./assets/Screenshot.png)
+

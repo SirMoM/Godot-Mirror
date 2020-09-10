@@ -1,4 +1,5 @@
 {
-  "input": ["test", "C"],
-  "output": "Where to save"
+  "input": ["path_to_dir_1", "path_to_dir_2"],
+  "output": "path_to_backup_dir"
 }
+
