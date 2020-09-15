@@ -121,6 +121,8 @@ func _open_file():
 ## @returns Error code or OK
 func _load_file_contend(file: File):
 	var file_contend = file.get_as_text()
+	if _windows:
+		file_contend = file_contend.replace("\\", "/")
 	var invalid = validate_json(file_contend)
 	if not invalid.empty():
 		Logger.info("Tryed to open invalide JSON. The error:")
