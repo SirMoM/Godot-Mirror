@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "JsonValidator",
+"language": "GDScript",
+"path": "res://src/JsonValidator.gd"
+}, {
 "base": "RichTextEffect",
 "class": "RichTextMatrix",
 "language": "GDScript",
 "path": "res://src/RichTextEffects/MatrixEffect.gd"
 } ]
 _global_script_class_icons={
+"JsonValidator": "",
 "RichTextMatrix": ""
 }
 
@@ -38,7 +44,6 @@ window/size/width=500
 window/size/height=300
 window/size/resizable=false
 window/size/borderless=true
-window/size/always_on_top=true
 
 [editor_plugins]
 

@@ -1,51 +1,49 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/RichTextEffects/MatrixEffect.gd" type="Script" id=1]
-[ext_resource path="res://src/TitleBar.gd" type="Script" id=2]
+[ext_resource path="res://scenes/TitleBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/fonts/Kufam-VariableFont_wght.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/icon.png" type="Texture" id=4]
 [ext_resource path="res://assets/folder-open.png" type="Texture" id=5]
 [ext_resource path="res://src/App.gd" type="Script" id=6]
-[ext_resource path="res://assets/fonts/main_font.tres" type="DynamicFont" id=7]
+[ext_resource path="res://assets/MainTheme.tres" type="Theme" id=7]
 [ext_resource path="res://assets/edit.png" type="Texture" id=8]
 [ext_resource path="res://assets/fonts/Kufam-Italic-VariableFont_wght.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://scenes/JsonEditor.tscn" type="PackedScene" id=10]
 
-[sub_resource type="Theme" id=1]
-Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
-Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
-Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
-Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
-Button/constants/hseparation = 2
-Button/fonts/font = ExtResource( 7 )
-Button/styles/disabled = null
-Button/styles/focus = null
-Button/styles/hover = null
-Button/styles/normal = null
-Button/styles/pressed = null
-
-[sub_resource type="RichTextEffect" id=2]
+[sub_resource type="RichTextEffect" id=1]
 resource_name = "RichTextMatrix"
 script = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 use_mipmaps = true
 use_filter = true
 extra_spacing_top = 2
 font_data = ExtResource( 3 )
 
-[sub_resource type="Theme" id=4]
-default_font = SubResource( 3 )
+[sub_resource type="Theme" id=3]
+default_font = SubResource( 2 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 size = 30
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 9 )
 
+[sub_resource type="DynamicFont" id=5]
+use_filter = true
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 13
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = SubResource( 1 )
+theme = ExtResource( 7 )
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_lock_": true
@@ -85,7 +83,7 @@ bbcode_enabled = true
 bbcode_text = "[color=grey][matrix]Error[/matrix]"
 text = "Error"
 selection_enabled = true
-custom_effects = [ SubResource( 2 ) ]
+custom_effects = [ SubResource( 1 ) ]
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -110,7 +108,7 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 452.0
 margin_bottom = 186.0
-theme = SubResource( 4 )
+theme = SubResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[b]Godot Mirror[/b]
 
@@ -153,189 +151,80 @@ Edit Icon created by Kiranshastry"
 margin_right = 500.0
 margin_bottom = 300.0
 mouse_filter = 2
-color = Color( 0.0878906, 0.10467, 0.140625, 1 )
+color = Color( 0.0862745, 0.105882, 0.141176, 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TitleBar" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 0.11
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": true
-}
+[node name="TitleBar" parent="." instance=ExtResource( 2 )]
+anchor_bottom = 0.0
 
-[node name="ColorRect" type="ColorRect" parent="TitleBar"]
-anchor_left = -0.000956238
-anchor_right = 0.999044
-anchor_bottom = 1.0
-mouse_filter = 1
-color = Color( 0.138062, 0.166409, 0.226563, 1 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="CloseButton" type="Button" parent="TitleBar"]
-anchor_left = 0.934
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -3.05176e-05
-rect_min_size = Vector2( 33, 33 )
-text = "X"
-flat = true
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": true
-}
-
-[node name="HelpButton" type="Button" parent="TitleBar"]
-anchor_left = 0.01
-anchor_right = 0.07
-anchor_bottom = 1.0
-margin_right = -35.0
-rect_min_size = Vector2( 30, 33 )
-text = "?"
-flat = true
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": true
-}
-
-[node name="MinimizeButton" type="Button" parent="TitleBar"]
-anchor_left = 0.868
-anchor_right = 0.934
-anchor_bottom = 1.0
-rect_min_size = Vector2( 33, 33 )
-text = "_"
-flat = true
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": true
-}
-
-[node name="HelpDialog" type="AcceptDialog" parent="TitleBar"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 50.0
-margin_right = -20.0
-margin_bottom = 83.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-window_title = "About"
+[node name="MainUI" type="Control" parent="."]
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="RichTextLabel" parent="TitleBar/HelpDialog"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 452.0
-margin_bottom = 22.0
-theme = SubResource( 4 )
-bbcode_enabled = true
-bbcode_text = "[b]How to use[/b]
-
-1. Create a config file
-	1. It has to be a JOSN-File like _config.json_
-	2. The JSON inside needs to have 2 attributes:
-		1. Input - Array of Strings:  Input paths
-		2. Output - String: Output path
-2. Open the directory containing the file with the folder icon.
-	1. You can edit the file with the pen icon
-3. Select the correct config file in the drop down button nex to the folder icon
-4. Press the Mirror button
-
-[b]Example config file[/b]
-[code]{
-		\"input\": [\"path_to_dir_1\", \"path_to_dir_2\"],
-		\"output\": \"path_to_backup_dir\"
-}[/code]
-
-
-[b]The UI[/b]
-[img=420x250]./assets/Screenshot.png[/img]
-
-[center][rainbow freq=0.88 sat=1 val=1][b]Have fun![/b][/rainbow][/center]
-"
-text = "How to use
-
-1. Create a config file
-	1. It has to be a JOSN-File like _config.json_
-	2. The JSON inside needs to have 2 attributes:
-		1. Input - Array of Strings:  Input paths
-		2. Output - String: Output path
-2. Open the directory containing the file with the folder icon.
-	1. You can edit the file with the pen icon
-3. Select the correct config file in the drop down button nex to the folder icon
-4. Press the Mirror button
-
-Example config file
-{
-		\"input\": [\"path_to_dir_1\", \"path_to_dir_2\"],
-		\"output\": \"path_to_backup_dir\"
-}
-
-
-The UI
-
-
-Have fun!
-"
-
-[node name="Logo" type="Sprite" parent="."]
+[node name="Logo" type="Sprite" parent="MainUI"]
 position = Vector2( 58, 67 )
 scale = Vector2( 0.875, 0.875 )
 texture = ExtResource( 4 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainUI"]
 anchor_left = 0.21
 anchor_top = 0.136667
 anchor_right = 0.59
 anchor_bottom = 0.326667
+margin_left = 96.6
+margin_top = 35.5334
+margin_right = 271.4
+margin_bottom = 92.9334
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
-[node name="Title" type="Label" parent="VBoxContainer"]
+[node name="Title" type="Label" parent="MainUI/VBoxContainer"]
 margin_right = 190.0
 margin_bottom = 39.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 text = "Godot-Mirror"
 valign = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Version" type="Label" parent="VBoxContainer"]
+[node name="Version" type="Label" parent="MainUI/VBoxContainer"]
 margin_top = 43.0
 margin_right = 190.0
-margin_bottom = 57.0
+margin_bottom = 65.0
 text = " v0.0.1"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AboutButton" type="Button" parent="."]
+[node name="AboutButton" type="Button" parent="MainUI"]
 self_modulate = Color( 1, 1, 1, 0.415686 )
-margin_left = 380.0
-margin_top = 41.0
-margin_right = 439.0
-margin_bottom = 69.0
+margin_left = 416.737
+margin_top = 40.4304
+margin_right = 475.737
+margin_bottom = 68.4304
+custom_fonts/font = SubResource( 5 )
 text = "About"
 flat = true
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Warning" type="RichTextLabel" parent="."]
-anchor_left = 0.6216
-anchor_top = 0.26
-anchor_right = 0.9416
-anchor_bottom = 0.85
+[node name="Warning" type="RichTextLabel" parent="MainUI"]
+anchor_left = 0.584
+anchor_top = 0.226667
+anchor_right = 0.952
+anchor_bottom = 0.853333
+margin_left = 285.0
+margin_top = 69.0
+margin_right = 478.0
+margin_bottom = 261.0
+custom_fonts/normal_font = SubResource( 6 )
 bbcode_enabled = true
 bbcode_text = "The stability of this tool is not guaranteed. Use them at your own risk.
 
@@ -347,11 +236,12 @@ text = "The stability of this tool is not guaranteed. Use them at your own risk.
 ! You may lose files !
 
 This tool workes only under windows and mac since it uses plattform specific commands."
+scroll_active = false
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainUI"]
 margin_left = 20.0
 margin_top = 150.0
 margin_right = 285.0
@@ -364,7 +254,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ConfigFileSelector" type="OptionButton" parent="HBoxContainer"]
+[node name="ConfigFileSelector" type="OptionButton" parent="MainUI/HBoxContainer"]
 margin_right = 205.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
@@ -375,7 +265,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OpenFolderButton" type="Button" parent="HBoxContainer"]
+[node name="OpenFolderButton" type="Button" parent="MainUI/HBoxContainer"]
 margin_left = 205.0
 margin_right = 235.0
 margin_bottom = 30.0
@@ -384,7 +274,7 @@ icon = ExtResource( 5 )
 flat = true
 expand_icon = true
 
-[node name="EditSelectedFileButton" type="Button" parent="HBoxContainer"]
+[node name="EditSelectedFileButton" type="Button" parent="MainUI/HBoxContainer"]
 margin_left = 235.0
 margin_right = 265.0
 margin_bottom = 30.0
@@ -393,22 +283,22 @@ icon = ExtResource( 8 )
 flat = true
 expand_icon = true
 
-[node name="MirrorButton" type="Button" parent="."]
+[node name="MirrorButton" type="Button" parent="MainUI"]
 anchor_left = -0.000879028
 anchor_top = -0.00163879
 anchor_right = -0.000879028
 anchor_bottom = -0.00163879
-margin_left = 20.4395
-margin_top = 190.492
-margin_right = 280.44
-margin_bottom = 240.492
+margin_left = 20.0351
+margin_top = 190.066
+margin_right = 280.036
+margin_bottom = 240.066
 text = "Mirror"
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="MainUI"]
 margin_left = 20.0
 margin_top = 260.0
 margin_right = 482.0
@@ -416,14 +306,20 @@ margin_bottom = 284.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="JsonEditor" parent="." instance=ExtResource( 10 )]
+visible = false
+anchor_top = 0.113333
+anchor_bottom = 0.946667
+margin_left = 0.0
+margin_top = 0.0
+margin_right = -3.05176e-05
+margin_bottom = 0.0
 [connection signal="dir_selected" from="FileDialog" to="." method="_on_FileDialog_dir_selected"]
-[connection signal="meta_clicked" from="MirrorErrorDialog/LineEdit" to="." method="_on_LineEdit_meta_clicked"]
-[connection signal="meta_clicked" from="AboutDialog/Label2" to="." method="_on_Label2_meta_clicked"]
-[connection signal="gui_input" from="TitleBar" to="TitleBar" method="_on_TitleBar_gui_input"]
-[connection signal="pressed" from="TitleBar/CloseButton" to="TitleBar" method="_on_CloseButton_pressed"]
-[connection signal="pressed" from="TitleBar/HelpButton" to="TitleBar" method="_on_HelpButton_pressed"]
-[connection signal="pressed" from="TitleBar/MinimizeButton" to="TitleBar" method="_on_MinimizeButton_pressed"]
-[connection signal="pressed" from="AboutButton" to="." method="_on_AboutButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/OpenFolderButton" to="." method="_on_OpenFolderButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/EditSelectedFileButton" to="." method="_on_EditSelectedFileButton_pressed"]
-[connection signal="pressed" from="MirrorButton" to="." method="_on_MirrorButton_pressed"]
+[connection signal="meta_clicked" from="MirrorErrorDialog/LineEdit" to="." method="_on_error_meta_clicked"]
+[connection signal="meta_clicked" from="AboutDialog/Label2" to="." method="_on_about_meta_clicked"]
+[connection signal="pressed" from="MainUI/AboutButton" to="." method="_on_AboutButton_pressed"]
+[connection signal="pressed" from="MainUI/HBoxContainer/OpenFolderButton" to="." method="_on_OpenFolderButton_pressed"]
+[connection signal="pressed" from="MainUI/HBoxContainer/EditSelectedFileButton" to="." method="_toggle_main_and_edit_view"]
+[connection signal="pressed" from="MainUI/MirrorButton" to="." method="_on_MirrorButton_pressed"]
+[connection signal="change_view" from="JsonEditor" to="." method="_toggle_main_and_edit_view"]
