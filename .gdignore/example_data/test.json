@@ -1,5 +1,4 @@
 {
-  "input": ["path_to_dir_1", "path_to_dir_2"],
-  "output": "path_to_backup_dir"
+	"input": ["input_path_1"],
+	 "output": "output_path"
 }
-

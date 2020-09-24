@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "JsonValidator",
 "language": "GDScript",
-"path": "res://src/JsonValidator.gd"
+"path": "res://src/JsonEditor/JsonValidator.gd"
 }, {
 "base": "RichTextEffect",
 "class": "RichTextMatrix",

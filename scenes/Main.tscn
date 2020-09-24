@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/MainTheme.tres" type="Theme" id=7]
 [ext_resource path="res://assets/edit.png" type="Texture" id=8]
 [ext_resource path="res://assets/fonts/Kufam-Italic-VariableFont_wght.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://scenes/JsonEditor.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/JsonEditor/JsonEditor.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RichTextEffect" id=1]
 resource_name = "RichTextMatrix"
@@ -58,8 +58,9 @@ window_title = "Open a Directory"
 dialog_text = "Choose the directory of your config files!"
 mode = 2
 access = 2
-current_dir = "/0 MiscDev/GODOT/Godot-Mirror"
-current_path = "/0 MiscDev/GODOT/Godot-Mirror/"
+show_hidden_files = true
+current_dir = "/Users/i13az81/Develop/UNI/MirrorRobot"
+current_path = "/Users/i13az81/Develop/UNI/MirrorRobot/"
 
 [node name="MirrorErrorDialog" type="AcceptDialog" parent="."]
 anchor_left = 0.5
@@ -146,6 +147,22 @@ This Programm uses a modified version of the logger.gd script from
 KOBUGE Games visit the repository
 
 Edit Icon created by Kiranshastry"
+
+[node name="FileNameConfirmationDialog" type="ConfirmationDialog" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 35.0
+margin_right = -10.0
+margin_bottom = -5.0
+
+[node name="LineEdit" type="LineEdit" parent="FileNameConfirmationDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 472.0
+margin_bottom = 216.0
+placeholder_text = "FileName"
+caret_blink = true
 
 [node name="Background" type="ColorRect" parent="."]
 margin_right = 500.0
@@ -311,15 +328,15 @@ __meta__ = {
 visible = false
 anchor_top = 0.113333
 anchor_bottom = 0.946667
-margin_left = 0.0
-margin_top = 0.0
 margin_right = -3.05176e-05
 margin_bottom = 0.0
 [connection signal="dir_selected" from="FileDialog" to="." method="_on_FileDialog_dir_selected"]
 [connection signal="meta_clicked" from="MirrorErrorDialog/LineEdit" to="." method="_on_error_meta_clicked"]
 [connection signal="meta_clicked" from="AboutDialog/Label2" to="." method="_on_about_meta_clicked"]
+[connection signal="confirmed" from="FileNameConfirmationDialog" to="." method="_on_FileNameConfirmationDialog_confirmed"]
 [connection signal="pressed" from="MainUI/AboutButton" to="." method="_on_AboutButton_pressed"]
 [connection signal="pressed" from="MainUI/HBoxContainer/OpenFolderButton" to="." method="_on_OpenFolderButton_pressed"]
+[connection signal="gui_input" from="MainUI/HBoxContainer/EditSelectedFileButton" to="." method="_on_EditSelectedFileButton_gui_input"]
 [connection signal="pressed" from="MainUI/HBoxContainer/EditSelectedFileButton" to="." method="_toggle_main_and_edit_view"]
 [connection signal="pressed" from="MainUI/MirrorButton" to="." method="_on_MirrorButton_pressed"]
 [connection signal="change_view" from="JsonEditor" to="." method="_toggle_main_and_edit_view"]

@@ -41,6 +41,7 @@ func _ready():
 
 	progress_bar.value = 0
 	_fill_config_file_selector()
+	$FileNameConfirmationDialog.get_cancel().connect("pressed", self, "_on_FileNameConfirmationDialog_cancled")
 
 
 func _on_AboutButton_pressed():
@@ -196,13 +197,48 @@ func _fill_config_file_selector() -> void:
 
 ## Opens the currently selected file in the JSON-Editor
 func _toggle_main_and_edit_view():
-	var _file = _open_file()
-	if _file is File:
-		$JsonEditor.file = _file
-		$MainUI.visible = !$MainUI.visible
-		$JsonEditor.visible = !$JsonEditor.visible
+	var temp_file = _open_file()
+	if !(temp_file is File and $JsonEditor.set_file(temp_file) != ERR_DOES_NOT_EXIST):
+		return # LOG error
+	$MainUI.visible = !$MainUI.visible
+	$JsonEditor.visible = !$JsonEditor.visible
+	Logger.debug("MainUI: " + str($MainUI.visible) + ", JsonEditor: " + str($JsonEditor.visible))
 
 ## For opening the url to the ussage dialog
 func _on_LineEdit_meta_clicked(_meta) -> void:
 	$MirrorErrorDialog.hide()
 	$TitleBar/HelpDialog.popup_centered()
+
+
+func _on_EditSelectedFileButton_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT and event.is_pressed():
+		Logger.info("Create new File")
+		$FileNameConfirmationDialog.popup()
+
+
+func _on_FileNameConfirmationDialog_confirmed() -> void:
+	var file_name = working_dir + "/" + $FileNameConfirmationDialog/LineEdit.text
+	print(file_name)
+	if !file_name.ends_with(".json"):
+		file_name = file_name + ".json"
+		print(file_name.get_file())
+	Logger.info("Open file: " + file_name)
+	
+	var file = File.new()
+	var result = file.open(file_name, File.WRITE)
+	if OK == result:
+		file.store_string('{\n\t"input": ["input_path_1"],\n\t "output": "output_path"\n}')
+		
+		_fill_config_file_selector()
+		for index in selector.get_item_count():
+			if selector.get_item_text(index).match(file_name.get_file()):
+				selector.select(index)
+				break
+		file.close()
+		_toggle_main_and_edit_view()
+	else:
+		Logger.error("Problem creating file!", "App", result)
+	$FileNameConfirmationDialog/LineEdit.text = ""
+
+func _on_FileNameConfirmationDialog_cancled() -> void:
+	pass
